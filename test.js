@@ -1,12 +1,10 @@
 import readline from 'node:readline/promises';
 import { stdin as input, stdout as output} from 'node:process';
+import { inspect } from 'util';
+import * as fs from 'node:fs'
 
 import {parse} from './src/jsParser.js';
 
-const rl = readline.createInterface({ input, output });
-
-rl.question('Enter code to tokenize:\n\n\n').then(code => {
-    //Tokenize(code);
-    parse(code)
-    rl.close();
-});
+fs.readFile('./testfile.js', 'utf-8', (err, data) => {
+    fs.writeFile('output.json', JSON.stringify(parse(data)), () => {})
+   })
