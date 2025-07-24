@@ -2,8 +2,8 @@
 //Basically this entire thing can be boiled down to a big switch case statement lmao
 //Lordcat
 
-import * as acorn from 'acorn';
-import * as escodegen from 'escodegen';
+const acorn = require('acorn')
+const escodegen = require('escodegen')
 
 function getMemberPath(expr) {
   return expr.type === 'Identifier'
@@ -13,7 +13,7 @@ function getMemberPath(expr) {
       : [];
 }
 
-export function parse(code){
+module.exports = function parse(code){
     const outputArray = []
     const ast = acorn.parse(code, { ecmaVersion: 2020, sourceType: "module" })
     const parseBody = (node) => {
